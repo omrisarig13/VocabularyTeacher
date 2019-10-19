@@ -1,0 +1,92 @@
+@startuml
+
+' Classes {{{
+
+object word {
+    char *native_word
+    char *translated_word
+}
+
+class Translator {
+    word_list
+
+    load_file()
+    save_file()
+    get_translation()
+    add_translation()
+    get_native_language_name()
+    get_learned_language_name()
+    set_native_language()
+    set_learned_language()
+    translate_to_native()
+    translate_to_learned()
+}
+
+' Questions {{{
+
+interface question {
+    callback ask_question
+}
+
+interface LearnedToNativeChoices {
+
+}
+
+interface LearnedToNativeInput {
+
+}
+
+interface NativeToLearnedChoices {
+
+}
+
+interface NativeToLearnedInput {
+
+}
+' Questions }}}
+
+object WordToLearn {
+    word word
+    status word_status
+    size_t current_question_type
+    int16_t questions_results
+}
+
+class Test {
+    run_test(translator, words_to_learn)
+}
+
+class Menu {
+    Test test
+    Translator translator
+    WordToLearn words_to_learn
+    __ private data __
+    run_test()
+    add_word()
+    save_to_file()
+    load_file()
+}
+
+' Classes }}}
+
+' Connections {{{
+
+' Questions {{{
+LearnedToNativeChoices --|> question
+LearnedToNativeInput --|> question
+NativeToLearnedChoices --|> question
+NativeToLearnedInput --|> question
+' Questions }}}
+
+Translator ---* word
+WordToLearn ---* word
+
+Test ---* question
+
+Menu --* Test
+Menu --* Translator
+Menu --* WordToLearn
+
+' Connections }}}
+
+@enduml
