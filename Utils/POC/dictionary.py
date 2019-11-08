@@ -60,9 +60,7 @@ class Dictionary():
 
         string_dict += "Dictionary data:\n"
         for current_word in self.words:
-            string_dict += "\t{} : {} [{}]\n".format(
-                current_word.native_word, current_word.translated_word,
-                current_word.word_known_level)
+            string_dict += "\t{}\n".format(str(current_word))
 
         return string_dict
 

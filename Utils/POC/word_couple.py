@@ -38,6 +38,15 @@ class WordCouple():
         self.word_known_level = word_known_level
         self._current_stage_in_learned_level = 0
 
+    def __str__(self):
+        """Return the string representation of the object.
+
+        :returns: The string representation of the object.
+
+        """
+        return "{} : {} [{}]".format(self.native_word, self.translated_word,
+                                     self.word_known_level)
+
     def answered_right(self):
         """Update the word level after right answer.
 
