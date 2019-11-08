@@ -15,6 +15,8 @@ from Actions.ProjectActions import load_dictionary
 from Actions.ProjectActions import print_dictionary
 from Actions.ProjectActions import save_dictionary
 from Actions.ProjectActions import extend_dictionary
+from Actions.ProjectActions import dictionary_learned_translate
+from Actions.ProjectActions import dictionary_native_translate
 
 ALL_AVAILABLE_COMMANDS = [
     help_action.HelpAction,
@@ -24,7 +26,9 @@ ALL_AVAILABLE_COMMANDS = [
     load_dictionary.LoadDictionaryAction,
     print_dictionary.PrintDictionaryAction,
     save_dictionary.SaveDictionaryAction,
-    extend_dictionary.ExtendDictionaryAction
+    extend_dictionary.ExtendDictionaryAction,
+    dictionary_learned_translate.TranlateToLearnedDictionaryAction,
+    dictionary_native_translate.TranlateToNativeDictionaryAction
 ]
 
 
