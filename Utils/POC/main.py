@@ -14,6 +14,7 @@ from Actions.ProjectActions import add_new_word
 from Actions.ProjectActions import load_dictionary
 from Actions.ProjectActions import print_dictionary
 from Actions.ProjectActions import save_dictionary
+from Actions.ProjectActions import extend_dictionary
 
 ALL_AVAILABLE_COMMANDS = [
     help_action.HelpAction,
@@ -22,7 +23,8 @@ ALL_AVAILABLE_COMMANDS = [
     add_new_word.AddNewWordAction,
     load_dictionary.LoadDictionaryAction,
     print_dictionary.PrintDictionaryAction,
-    save_dictionary.SaveDictionaryAction
+    save_dictionary.SaveDictionaryAction,
+    extend_dictionary.ExtendDictionaryAction
 ]
 
 

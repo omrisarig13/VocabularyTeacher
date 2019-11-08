@@ -20,6 +20,19 @@ class LoadDictionaryAction(menu_actions.BaseAction):
     """
     USAGE = "{command_name} file_name".format(command_name=COMMAND_NAME)
 
+    @staticmethod
+    def load_dictionary_file(file_name):
+        """Load the dictionary from the disk.
+
+        :file_name: The name of the dictionary file.
+        :returns: The dictionary loaded from the disk.
+
+        """
+        with open(file_name, "rb") as dictionary_file:
+            loaded_dictionary = pickle.load(dictionary_file)
+
+        return loaded_dictionary
+
     def run_command(self, menu_context, *args, **kwargs):
         """Run the command that will load the dictionary from the file.
 
@@ -40,7 +53,6 @@ class LoadDictionaryAction(menu_actions.BaseAction):
 
         file_name = args[0]
 
-        with open(file_name, "rb") as dictionary_file:
-            menu_context["dictionary"] = pickle.load(dictionary_file)
+        menu_context["dictionary"] = self.load_dictionary_file(file_name)
 
         return True

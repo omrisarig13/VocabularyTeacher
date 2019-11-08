@@ -93,3 +93,30 @@ class Dictionary():
                 all_translations.append(current_word.native_word)
 
         return all_translations
+
+    def extend(self, second_dictionary):
+        """Concatenate the second dictionary into this one.
+
+        Move over all the words in the second dictionary and add all of them
+        into the current dictionary. In case of a word that appears in multiple
+        dictionaries, it's level will stay the same as the one in this
+        dictionary.
+
+        :second_dictionary: The dictionary to add into this one.
+        :returns: None
+
+        """
+        # Validate that the dictionaries can be concatenated.
+        if (
+                self.native_language != second_dictionary.native_language or
+                (self.translated_language !=
+                 second_dictionary.translated_language)):
+            raise ValueError(
+                "Can't extend dictionaries with different languages")
+
+        # Add all the words from the second dictionary into this one.
+        for current_word in second_dictionary.words:
+            try:
+                self.add_word(current_word)
+            except KeyError:
+                pass
