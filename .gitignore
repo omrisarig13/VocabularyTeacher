@@ -51,5 +51,9 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# Ignoring some auto generated python files
+.mypy_cache/
+__pycache__/
+
 # Specific Project ignores
 Design/class_diagram.svg
