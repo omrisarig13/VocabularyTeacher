@@ -14,7 +14,7 @@ class WordCouple():
     translation.
     """
 
-    MAX_LEVEL = 5
+    MAX_LEVEL = 4
     ANSWERS_PER_LEVEL = 3
 
     def __init__(self, native_word, translated_word, word_known_level=0,
@@ -53,11 +53,12 @@ class WordCouple():
         :returns: None
 
         """
-        self._current_stage_in_learned_level += 1
+        if self.word_known_level < self.MAX_LEVEL:
+            self._current_stage_in_learned_level += 1
 
-        if self._current_stage_in_learned_level >= self.ANSWERS_PER_LEVEL:
-            self.word_known_level += 1
-            self._current_stage_in_learned_level = 0
+            if self._current_stage_in_learned_level >= self.ANSWERS_PER_LEVEL:
+                self.word_known_level += 1
+                self._current_stage_in_learned_level = 0
 
     def answered_wrong(self):
         """Update the word level after wrong answer.
@@ -65,5 +66,22 @@ class WordCouple():
         :returns: None
 
         """
-        if self._current_stage_in_learned_level > 0:
+        if self._current_stage_in_learned_level > (
+                -1 * self.ANSWERS_PER_LEVEL):
             self._current_stage_in_learned_level -= 1
+        else:
+            if self.word_known_level > 0:
+                self.word_known_level -= 1
+                self.word_known_level = 0
+
+    def reset_knowledge(self):
+        """Reset the knowladge of the word, to start learning it again.
+
+        This function should be used to completely reset the state of a given
+        word, making it as if the word was just now created.
+
+        :returns: None
+
+        """
+        self._current_stage_in_learned_level = 0
+        self.word_known_level = 0
