@@ -120,3 +120,34 @@ class Dictionary():
                 self.add_word(current_word)
             except KeyError:
                 pass
+
+    def get_word(self, native_word, translated_word):
+        """Get the word couple from the dictionary.
+
+        :native_word: The word in the native language
+        :translated_word: the word in the translated language.
+        :returns: The word from the dictionary.
+
+        """
+        for current_word in self.words:
+            if (
+                    current_word.native_word == native_word and
+                    current_word.translated_word == translated_word):
+                return current_word
+
+        raise KeyError("Word not in dictionary.")
+
+    def get_words_from_level(self, level):
+        """Get all the words from some level in the dictionary.
+
+        :level: The level to get the words from.
+        :returns: A list with all the words from this level.
+
+        """
+        words_from_level = []
+
+        for current_word in self.words:
+            if current_word.word_known_level == level:
+                words_from_level.append(current_word)
+
+        return words_from_level
