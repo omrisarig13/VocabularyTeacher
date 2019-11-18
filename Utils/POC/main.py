@@ -17,6 +17,7 @@ from Actions.ProjectActions import save_dictionary
 from Actions.ProjectActions import extend_dictionary
 from Actions.ProjectActions import dictionary_learned_translate
 from Actions.ProjectActions import dictionary_native_translate
+from Actions.ProjectActions import run_test
 
 ALL_AVAILABLE_COMMANDS = [
     help_action.HelpAction,
@@ -28,7 +29,8 @@ ALL_AVAILABLE_COMMANDS = [
     save_dictionary.SaveDictionaryAction,
     extend_dictionary.ExtendDictionaryAction,
     dictionary_learned_translate.TranlateToLearnedDictionaryAction,
-    dictionary_native_translate.TranlateToNativeDictionaryAction
+    dictionary_native_translate.TranlateToNativeDictionaryAction,
+    run_test.RunTestAction
 ]
 
 
