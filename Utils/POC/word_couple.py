@@ -72,7 +72,7 @@ class WordCouple():
         else:
             if self.word_known_level > 0:
                 self.word_known_level -= 1
-                self.word_known_level = 0
+                self._current_stage_in_learned_level = 0
 
     def reset_knowledge(self):
         """Reset the knowladge of the word, to start learning it again.
