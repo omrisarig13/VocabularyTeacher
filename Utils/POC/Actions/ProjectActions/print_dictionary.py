@@ -4,6 +4,8 @@ An action that will print the dictionary to the user.
 File: print_dictionary.py
 """
 
+import consolemenu
+
 import menu
 from Actions import menu_actions
 
@@ -29,6 +31,15 @@ class PrintDictionaryAction(menu_actions.BaseAction):
         if menu_context.get("dictionary", None) is None:
             raise menu.InvalidCommand("Menu does not have a dictionary")
 
-        print(menu_context["dictionary"])
+        dictionary = menu_context["dictionary"]
+
+        title = "Dictionary from {} to {}.".format(
+            dictionary.native_language,
+            dictionary.translated_language)
+        word_list = [str(current_word) for current_word in dictionary.words]
+        dictionary_menu = consolemenu.SelectionMenu(
+            word_list, title, exit_option_text="Up")
+
+        dictionary_menu.show()
 
         return True
