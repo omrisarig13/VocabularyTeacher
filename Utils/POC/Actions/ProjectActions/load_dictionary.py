@@ -6,6 +6,8 @@ File: load_dictionary.py
 
 import pickle
 
+import qprompt
+
 import menu
 from Actions import menu_actions
 
@@ -15,10 +17,8 @@ class LoadDictionaryAction(menu_actions.BaseAction):
 
     COMMAND_NAME = "load_dictionary"
     HELP_TEXT = "Load the dictionary to a give file."
-    ARGUMENTS = """
-            file_name - The file name to load the dictionary from
-    """
-    USAGE = "{command_name} file_name".format(command_name=COMMAND_NAME)
+    ARGUMENTS = """None"""
+    USAGE = "{command_name}".format(command_name=COMMAND_NAME)
 
     @staticmethod
     def load_dictionary_file(file_name):
@@ -44,14 +44,10 @@ class LoadDictionaryAction(menu_actions.BaseAction):
         :Note: This functions adds the dictionary to the context of the menu.
 
         """
-        if len(args) != 1:
-            raise menu.InvalidCommand(
-                "Invalid number of arguments for command. Read the help")
-
         if menu_context.get("dictionary", None):
             raise menu.InvalidCommand("Menu already has a dictionary.")
 
-        file_name = args[0]
+        file_name = qprompt.ask_str("Insert the file name of the dictionary")
 
         menu_context["dictionary"] = self.load_dictionary_file(file_name)
 
