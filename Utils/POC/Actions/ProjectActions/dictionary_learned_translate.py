@@ -4,6 +4,8 @@ Get the translate of the word to the learned language by the dictionary.
 File: dictionary_learned_translate.py
 """
 
+import qprompt
+
 import menu
 from Actions import menu_actions
 
@@ -16,11 +18,8 @@ class TranlateToLearnedDictionaryAction(menu_actions.BaseAction):
         Translate the word to the learned language using the dictionary.
         Get all the translations of the given word.
     """
-    ARGUMENTS = """
-            word_to_translate - The word to translate to the learned language.
-    """
-    USAGE = "{command_name} word_to_translate".format(
-        command_name=COMMAND_NAME)
+    ARGUMENTS = """None"""
+    USAGE = "{command_name}".format(command_name=COMMAND_NAME)
 
     def run_command(self, menu_context, *args, **kwargs):
         """Print all the translation of a given word.
@@ -31,18 +30,15 @@ class TranlateToLearnedDictionaryAction(menu_actions.BaseAction):
         :returns: True to make the menu continue to run
 
         """
-        if len(args) != 1:
-            raise menu.InvalidCommand(
-                "Invalid number of arguments for command. Read the help")
-
         if menu_context.get("dictionary", None) is None:
             raise menu.InvalidCommand(
                 "Can't translate without dictionary.")
 
-        word_to_translate = args[0]
+        word_to_translate = qprompt.ask_str("Insert the word to translate")
         dictionary = menu_context["dictionary"]
 
         print(dictionary.get_all_translations_to_translated_languege(
             word_to_translate))
+        qprompt.pause()
 
         return True
