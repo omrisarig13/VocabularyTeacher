@@ -6,6 +6,8 @@ File: save_dictionary.py
 
 import pickle
 
+import qprompt
+
 import menu
 from Actions import menu_actions
 
@@ -24,19 +26,14 @@ class SaveDictionaryAction(menu_actions.BaseAction):
         """Run the command that will save the dictionary to the file.
 
         :menu_context: The context of the menu.
-        :*args: The special arguments for the command. It will include the
-                name of the file to save the dictionary into.
         :returns: True to make the menu continue to run
 
         """
-        if len(args) != 1:
-            raise menu.InvalidCommand(
-                "Invalid number of arguments for command. Read the help")
-
         if menu_context.get("dictionary", None) is None:
             raise menu.InvalidCommand("Menu doesn't have a dictionary.")
 
-        file_name = args[0]
+        file_name = qprompt.ask_str(
+            "Insert the file name to save the dictionary into")
 
         with open(file_name, "wb") as dictionary_file:
             pickle.dump(menu_context["dictionary"], dictionary_file)
