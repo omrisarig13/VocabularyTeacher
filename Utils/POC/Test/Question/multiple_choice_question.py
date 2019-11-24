@@ -7,6 +7,8 @@ File: multiple_choice_question.py
 import random
 import abc
 
+import qprompt
+
 from Test.Question import abstract_question
 
 
@@ -94,6 +96,14 @@ class MultipleChoiceQuestion(abstract_question.AbstractQuestion):
         # -1 is to make the answer zero based
         answer_word = self._all_answers[int(current_answer)-1]
         return self._check_answer_word(answer_word)
+
+    def _get_answer_from_user(self):
+        """Get the answer from the user.
+
+        :returns: The number of the answer.
+
+        """
+        return qprompt.ask_int("Answer", vld=range(1, 5))
 
 
 class MultipleChoiceToNativeQuestion(MultipleChoiceQuestion):

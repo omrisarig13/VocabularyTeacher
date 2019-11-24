@@ -4,6 +4,8 @@ An action that will run a test on the words in the dictionary.
 File: run_test.py
 """
 
+import qprompt
+
 from Actions import menu_actions
 from Test import test
 import menu
@@ -40,5 +42,7 @@ class RunTestAction(menu_actions.BaseAction):
             current_test = test.Test(dictionary)
 
         current_test.run()
+
+        qprompt.pause()
 
         return True

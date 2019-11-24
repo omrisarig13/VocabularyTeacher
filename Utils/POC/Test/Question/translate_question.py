@@ -4,6 +4,8 @@ An implementation of translate questions.
 File: translate_question.py
 """
 
+import qprompt
+
 from Test.Question import abstract_question
 
 
@@ -19,6 +21,14 @@ class TranslateQuestion(abstract_question.AbstractQuestion):
 
         """
         return self.QUESTION_FORMAT.format(self._get_question_word())
+
+    def _get_answer_from_user(self):
+        """Get the answer from the user.
+
+        :returns: The string with the answer from the user.
+
+        """
+        return qprompt.ask_str("Answer")
 
 
 class TranslateToNativeQuestion(TranslateQuestion):
