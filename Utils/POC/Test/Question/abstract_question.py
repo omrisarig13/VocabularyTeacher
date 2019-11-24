@@ -64,6 +64,14 @@ class AbstractQuestion(abc.ABC):
 
         """
 
+    @abc.abstractmethod
+    def _get_answer_from_user(self):
+        """Get the answer from the user.
+
+        :returns: The answer got from the user.
+
+        """
+
     def ask_question(self):
         """Ask the user the current question.
 
@@ -77,11 +85,11 @@ class AbstractQuestion(abc.ABC):
         print(question)
 
         # Get answers until getting the right answer or a wrong answer.
-        answer = input("answer:")
+        answer = self._get_answer_from_user()
         current_answer_correctness = self._check_answer(answer)
         while current_answer_correctness == self.RIGHT_ANSWER_BUT_NOT_WANTED:
             print("Your answer is correct but not the wanted one. Try again.")
-            answer = input("answer:")
+            answer = self._get_answer_from_user()
             current_answer_correctness = self._check_answer(answer)
 
         # Update the number of answers for the question and return the result.
