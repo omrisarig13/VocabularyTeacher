@@ -8,7 +8,6 @@ import qprompt
 
 from Actions import menu_actions
 from Test import test
-import menu
 
 
 class RunTestAction(menu_actions.BaseAction):
@@ -33,7 +32,10 @@ class RunTestAction(menu_actions.BaseAction):
 
         """
         if menu_context.get("dictionary", None) is None:
-            raise menu.InvalidCommand("Menu does not have a dictionary")
+            print("Menu does not have a dictionary")
+            qprompt.pause()
+            return True
+
         dictionary = menu_context["dictionary"]
 
         if len(args) == 2:

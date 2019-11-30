@@ -6,7 +6,6 @@ File: dictionary_learned_translate.py
 
 import qprompt
 
-import menu
 from Actions import menu_actions
 
 
@@ -31,8 +30,9 @@ class TranlateToLearnedDictionaryAction(menu_actions.BaseAction):
 
         """
         if menu_context.get("dictionary", None) is None:
-            raise menu.InvalidCommand(
-                "Can't translate without dictionary.")
+            print("Can't translate without dictionary.")
+            qprompt.pause()
+            return True
 
         word_to_translate = qprompt.ask_str("Insert the word to translate")
         dictionary = menu_context["dictionary"]

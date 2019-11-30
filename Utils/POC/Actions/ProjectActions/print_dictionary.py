@@ -5,8 +5,8 @@ File: print_dictionary.py
 """
 
 import consolemenu
+import qprompt
 
-import menu
 from Actions import menu_actions
 
 
@@ -29,7 +29,9 @@ class PrintDictionaryAction(menu_actions.BaseAction):
         :Note: The function prints the dictionary to the user.
         """
         if menu_context.get("dictionary", None) is None:
-            raise menu.InvalidCommand("Menu does not have a dictionary")
+            print("Menu does not have a dictionary")
+            qprompt.pause()
+            return True
 
         dictionary = menu_context["dictionary"]
 

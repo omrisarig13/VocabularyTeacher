@@ -8,7 +8,6 @@ import pickle
 
 import qprompt
 
-import menu
 from Actions import menu_actions
 
 
@@ -30,7 +29,9 @@ class SaveDictionaryAction(menu_actions.BaseAction):
 
         """
         if menu_context.get("dictionary", None) is None:
-            raise menu.InvalidCommand("Menu doesn't have a dictionary.")
+            print("Menu doesn't have a dictionary.")
+            qprompt.pause()
+            return True
 
         file_name = qprompt.ask_str(
             "Insert the file name to save the dictionary into")

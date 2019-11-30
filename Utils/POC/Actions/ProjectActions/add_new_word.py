@@ -9,7 +9,6 @@ import qprompt
 import word_couple
 
 from Actions import menu_actions
-import menu
 
 
 class AddNewWordAction(menu_actions.BaseAction):
@@ -30,7 +29,11 @@ class AddNewWordAction(menu_actions.BaseAction):
 
         """
         if menu_context.get("dictionary", None) is None:
-            raise menu.InvalidCommand("Menu does not have a dictionary")
+            print("Menu does not have a dictionary")
+            qprompt.pause()
+            return True
+
+        dictionary = menu_context["dictionary"]
 
         native_word = qprompt.ask_str("Insert the native word")
         learned_word = qprompt.ask_str("Insert the learned word")
@@ -41,6 +44,10 @@ class AddNewWordAction(menu_actions.BaseAction):
 
         new_word = word_couple.WordCouple(native_word, learned_word,
                                           known_level)
-        menu_context["dictionary"].add_word(new_word)
+        try:
+            dictionary.add_word(new_word)
+        except KeyError as dictionary_error:
+            print(dictionary_error)
+            qprompt.pause()
 
         return True
