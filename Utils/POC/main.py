@@ -8,7 +8,6 @@ Description: Add all the commands to the menu of the project, than run the
 
 import menu
 from Actions.MenuActions import help_action
-from Actions.MenuActions import exit_action
 from Actions.ProjectActions import add_dictionary
 from Actions.ProjectActions import add_new_word
 from Actions.ProjectActions import load_dictionary
@@ -21,7 +20,6 @@ from Actions.ProjectActions import run_test
 
 ALL_AVAILABLE_COMMANDS = [
     help_action.HelpAction,
-    exit_action.ExitAction,
     add_dictionary.AddDictionaryAction,
     add_new_word.AddNewWordAction,
     load_dictionary.LoadDictionaryAction,
