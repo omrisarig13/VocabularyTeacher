@@ -7,17 +7,14 @@ File: help_action.py
 import consolemenu
 import qprompt
 
-import menu
 from Actions import menu_actions
 
 
 class HelpAction(menu_actions.BaseAction):
     """An action that will print the help of the menu."""
 
-    COMMAND_NAME = "help"
+    COMMAND_NAME = "Help"
     HELP_TEXT = "Print this help."
-    ARGUMENTS = """None"""
-    USAGE = "{command_name}".format(command_name=COMMAND_NAME)
 
     @staticmethod
     def _run_help_on_command(menu_context, command_string):
@@ -30,19 +27,13 @@ class HelpAction(menu_actions.BaseAction):
         """
         # Print the help on the specific command.
         command = menu_context["actions"].get(command_string, None)
-        if command is None:
-            raise menu.InvalidCommand("Got invalid command for help.")
         print(command.get_help())
         qprompt.pause()
 
-    def run_command(self, menu_context, *args, **kwargs):
+    def run_command(self, menu_context):
         """Run the command that will print the help of the menu.
 
         :menu_context: The context of the menu.
-        :*args: The special arguments for the command. In case there will be
-                a command name in it the help of the command will be
-                printed. Otherwise, the general help will be printed.
-        :returns: True to make the menu continue running.
 
         :Note: The function prints the dictionary to the user.
         """
@@ -54,10 +45,8 @@ class HelpAction(menu_actions.BaseAction):
                     command + " command",
                     self._run_help_on_command,
                     kwargs={
-                        "menu_context":menu_context,
-                        "command_string":command},
-                should_exit=False))
+                        "menu_context": menu_context,
+                        "command_string": command},
+                    should_exit=False))
 
         menu.show(True)
-
-        return True
