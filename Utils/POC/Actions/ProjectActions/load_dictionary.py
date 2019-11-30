@@ -8,7 +8,6 @@ import pickle
 
 import qprompt
 
-import menu
 from Actions import menu_actions
 
 
@@ -45,7 +44,9 @@ class LoadDictionaryAction(menu_actions.BaseAction):
 
         """
         if menu_context.get("dictionary", None):
-            raise menu.InvalidCommand("Menu already has a dictionary.")
+            print("Menu already has a dictionary.")
+            qprompt.pause()
+            return True
 
         file_name = qprompt.ask_str("Insert the file name of the dictionary")
 

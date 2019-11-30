@@ -6,7 +6,6 @@ File: load_dictionary.py
 
 import qprompt
 
-import menu
 from Actions import menu_actions
 from Actions.ProjectActions import load_dictionary
 
@@ -27,8 +26,9 @@ class ExtendDictionaryAction(menu_actions.BaseAction):
 
         """
         if menu_context.get("dictionary", None) is None:
-            raise menu.InvalidCommand(
-                "Can't extend dictionary when there isn't one.")
+            print("Can't extend dictionary when there isn't one.")
+            qprompt.pause()
+            return True
 
         file_name = qprompt.ask_str("Insert the new name of the dictionary")
         dictionary = menu_context["dictionary"]

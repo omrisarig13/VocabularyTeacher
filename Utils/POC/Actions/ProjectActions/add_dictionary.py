@@ -8,7 +8,6 @@ import qprompt
 
 import dictionary
 
-import menu
 from Actions import menu_actions
 
 
@@ -29,7 +28,9 @@ class AddDictionaryAction(menu_actions.BaseAction):
         :Note: This functions adds the dictionary to the menu context.
         """
         if menu_context.get("dictionary", None):
-            raise menu.InvalidCommand("Menu already has a dictionary.")
+            print("Menu already has a dictionary.")
+            qprompt.pause()
+            return True
 
         native_language = qprompt.ask_str(
             "Insert the native language of the dictionary")
