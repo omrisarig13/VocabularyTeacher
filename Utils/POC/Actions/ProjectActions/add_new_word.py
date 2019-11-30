@@ -14,16 +14,13 @@ from Actions import menu_actions
 class AddNewWordAction(menu_actions.BaseAction):
     """An action that will Add a new word to the dictionary."""
 
-    COMMAND_NAME = "add_new_word"
+    COMMAND_NAME = "Add New Word"
     HELP_TEXT = "Add the given new word to the dictionary."
-    ARGUMENTS = """None"""
-    USAGE = "{command_name}".format(command_name=COMMAND_NAME)
 
-    def run_command(self, menu_context, *args, **kwargs):
+    def run_command(self, menu_context):
         """Run the command that will add the new word to the dictionary.
 
         :menu_context: The context of the menu to add the dictionary to.
-        :returns: True to make the menu continue to run
 
         :Note: This functions adds the new word to the dictionary.
 
@@ -31,7 +28,7 @@ class AddNewWordAction(menu_actions.BaseAction):
         if menu_context.get("dictionary", None) is None:
             print("Menu does not have a dictionary")
             qprompt.pause()
-            return True
+            return
 
         dictionary = menu_context["dictionary"]
 
@@ -49,5 +46,3 @@ class AddNewWordAction(menu_actions.BaseAction):
         except KeyError as dictionary_error:
             print(dictionary_error)
             qprompt.pause()
-
-        return True

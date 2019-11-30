@@ -14,7 +14,7 @@ from Actions import menu_actions
 class LoadDictionaryAction(menu_actions.BaseAction):
     """An action that will Load the dictionary of the menu from a file."""
 
-    COMMAND_NAME = "load_dictionary"
+    COMMAND_NAME = "Load Dictionary"
     HELP_TEXT = "Load the dictionary to a give file."
     ARGUMENTS = """None"""
     USAGE = "{command_name}".format(command_name=COMMAND_NAME)
@@ -32,13 +32,10 @@ class LoadDictionaryAction(menu_actions.BaseAction):
 
         return loaded_dictionary
 
-    def run_command(self, menu_context, *args, **kwargs):
+    def run_command(self, menu_context):
         """Run the command that will load the dictionary from the file.
 
         :menu_context: The context of the menu to add the dictionary to.
-        :*args: The special arguments for the command. It will include the
-                name of the file to load the dictionary from.
-        :returns: True to make the menu continue to run
 
         :Note: This functions adds the dictionary to the context of the menu.
 
@@ -46,10 +43,10 @@ class LoadDictionaryAction(menu_actions.BaseAction):
         if menu_context.get("dictionary", None):
             print("Menu already has a dictionary.")
             qprompt.pause()
-            return True
+            return
 
         file_name = qprompt.ask_str("Insert the file name of the dictionary")
 
         menu_context["dictionary"] = self.load_dictionary_file(file_name)
 
-        return True
+        return
