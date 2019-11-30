@@ -19,16 +19,16 @@ from Actions.ProjectActions import dictionary_native_translate
 from Actions.ProjectActions import run_test
 
 ALL_AVAILABLE_COMMANDS = [
-    help_action.HelpAction,
-    add_dictionary.AddDictionaryAction,
-    add_new_word.AddNewWordAction,
     load_dictionary.LoadDictionaryAction,
-    print_dictionary.PrintDictionaryAction,
+    add_dictionary.AddDictionaryAction,
     save_dictionary.SaveDictionaryAction,
+    print_dictionary.PrintDictionaryAction,
+    run_test.RunTestAction,
+    add_new_word.AddNewWordAction,
     extend_dictionary.ExtendDictionaryAction,
     dictionary_learned_translate.TranlateToLearnedDictionaryAction,
     dictionary_native_translate.TranlateToNativeDictionaryAction,
-    run_test.RunTestAction
+    help_action.HelpAction,
 ]
 
 
