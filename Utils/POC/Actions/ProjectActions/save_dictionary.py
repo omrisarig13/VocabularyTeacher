@@ -28,8 +28,11 @@ class SaveDictionaryAction(menu_actions.BaseAction):
             qprompt.pause()
             return
 
+        dictionary_name = menu_context.get("dictionary_name", None)
+
         file_name = qprompt.ask_str(
-            "Insert the file name to save the dictionary into")
+            "Insert the file name to save the dictionary into",
+            dictionary_name)
 
         with open(file_name, "wb") as dictionary_file:
             pickle.dump(menu_context["dictionary"], dictionary_file)
