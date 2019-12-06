@@ -32,12 +32,19 @@ class AddNewWordAction(menu_actions.BaseAction):
 
         dictionary = menu_context["dictionary"]
 
+        print("Insert the words as asked for. To cancel, put -1 as any field.")
+
         native_word = qprompt.ask_str("Insert the native word")
         learned_word = qprompt.ask_str("Insert the learned word")
         known_level = qprompt.ask_int(
             "Insert the known level",
             0,
-            vld=list(range(word_couple.WordCouple.MAX_LEVEL + 1)))
+            vld=list(range(-1, word_couple.WordCouple.MAX_LEVEL + 1)))
+
+        # In case the one of the parameters was set to -1 it also means that
+        # the user didn't want to add the word, simply exit the function.
+        if known_level == -1 or native_word == "-1" or learned_word == "-1":
+            return
 
         new_word = word_couple.WordCouple(native_word, learned_word,
                                           known_level)
