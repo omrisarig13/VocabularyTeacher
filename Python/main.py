@@ -25,6 +25,7 @@ ALL_AVAILABLE_COMMANDS = [
     print_dictionary.PrintDictionaryAction,
     run_test.RunTestAction,
     add_new_word.AddNewWordAction,
+    add_new_word.BulkAddNewWordAction,
     extend_dictionary.ExtendDictionaryAction,
     dictionary_learned_translate.TranlateToLearnedDictionaryAction,
     dictionary_native_translate.TranlateToNativeDictionaryAction,

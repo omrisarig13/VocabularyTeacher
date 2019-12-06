@@ -74,3 +74,36 @@ class AddNewWordAction(menu_actions.BaseAction):
 
         # Make sure the user sees the output before ending the action.
         qprompt.pause()
+
+
+class BulkAddNewWordAction(menu_actions.BaseAction):
+    """An action that will add words to the dictionary."""
+
+    COMMAND_NAME = "Bulk Add New Words"
+    HELP_TEXT = "Add a bulk of new words to the dictionary."
+
+    def run_command(self, menu_context):
+        """Run the command that will add a bulk of new words to the dictionary.
+
+        :menu_context: The context of the menu to add the dictionary to.
+
+        :Note: This functions adds the new word to the dictionary.
+
+        """
+        # Get the dictionary (and validate it exists).
+        dictionary = menu_context.get("dictionary", None)
+        if dictionary is None:
+            print("Menu does not have a dictionary")
+            qprompt.pause()
+            return
+
+        print("Add all the wanted new words to the dictionary. "
+              "To end the input, stop inserting words "
+              "(by exiting as prompt in add word).")
+
+        # As long as the user has add a new word, continue to add words.
+        while AddNewWordAction.add_new_word(dictionary):
+            pass
+
+        # Make sure the user sees the output before ending the action.
+        qprompt.pause()
