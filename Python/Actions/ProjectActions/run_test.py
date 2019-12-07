@@ -22,14 +22,18 @@ class RunTestAction(menu_actions.BaseAction):
         :menu_context: The context of the menu.
 
         """
-        if menu_context.get("dictionary", None) is None:
+        dictionary = menu_context.get("dictionary", None)
+        if dictionary is None:
             print("Menu does not have a dictionary")
             qprompt.pause()
             return
 
-        dictionary = menu_context["dictionary"]
+        number_of_questions = qprompt.ask_int(
+            "Insert the number of questions per known level",
+            test.Test.DEFAULT_NUMBER_OF_QUESTIONS,
+            vld=lambda x: x > 0)
 
-        current_test = test.Test(dictionary)
+        current_test = test.Test(dictionary, number_of_questions)
 
         current_test.run()
 
