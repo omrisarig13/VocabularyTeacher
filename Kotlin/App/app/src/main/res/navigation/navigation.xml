@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation"
+            app:startDestination="@id/mainFragment">
+
+    <fragment android:id="@+id/mainFragment" android:name="com.example.vocabularyteacher.MainFragment"
+              android:label="fragment_main" tools:layout="@layout/fragment_main">
+        <action android:id="@+id/action_mainFragment_to_addWord" app:destination="@id/addWord"/>
+        <action android:id="@+id/action_mainFragment_to_printDictionaryFragment"
+                app:destination="@id/printDictionaryFragment"/>
+    </fragment>
+    <fragment android:id="@+id/addWord" android:name="com.example.vocabularyteacher.AddWord"
+              android:label="fragment_add_word" tools:layout="@layout/fragment_add_word">
+        <action android:id="@+id/action_addWord_to_mainFragment" app:destination="@id/mainFragment"
+                app:popUpTo="@+id/mainFragment"/>
+    </fragment>
+    <fragment android:id="@+id/printDictionaryFragment"
+              android:name="com.example.vocabularyteacher.PrintDictionaryFragment"
+              android:label="fragment_print_dictionary" tools:layout="@layout/fragment_print_dictionary"/>
+</navigation>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".AddWord">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:text="@string/add_new_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/add_word_title_text"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.43" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="16dp" android:textSize="36sp" android:textStyle="bold"/>
+        <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/add_word_native_word_edit_text"
+                app:layout_constraintStart_toEndOf="@+id/add_word_native_word_text"
+                app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_word_title_text"
+                app:layout_constraintBottom_toTopOf="@+id/add_word_translated_word_edit_text"
+                app:layout_constraintVertical_bias="0.0" android:textAlignment="center"
+                android:layout_marginEnd="16dp"/>
+        <TextView
+                android:text="@string/native_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/add_word_native_word_text"
+                app:layout_constraintTop_toBottomOf="@+id/add_word_title_text"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/add_word_native_word_edit_text"
+                app:layout_constraintBaseline_toBaselineOf="@id/add_word_native_word_edit_text"
+                android:textSize="18sp" android:layout_marginStart="16dp"/>
+        <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/add_word_translated_word_edit_text"
+                app:layout_constraintStart_toEndOf="@+id/add_word_translated_word_text"
+                app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_word_native_word_edit_text"
+                app:layout_constraintBottom_toTopOf="@+id/add_word_word_known_level_edit_text"
+                android:textAlignment="center" android:layout_marginEnd="16dp"/>
+        <TextView
+                android:text="@string/translated_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/add_word_translated_word_text"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/add_word_translated_word_edit_text"
+                app:layout_constraintBaseline_toBaselineOf="@id/add_word_translated_word_edit_text"
+                android:textSize="18sp" android:layout_marginStart="16dp"/>
+        <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/add_word_word_known_level_edit_text"
+                app:layout_constraintTop_toBottomOf="@+id/add_word_translated_word_edit_text"
+                app:layout_constraintBottom_toTopOf="@+id/add_word_done_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/add_word_word_known_level_text"
+                app:layout_constraintHorizontal_bias="0.5" android:text="0" android:textAlignment="center"
+                android:layout_marginEnd="16dp"/>
+        <TextView
+                android:text="@string/word_known_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_word_word_known_level_text"
+                app:layout_constraintEnd_toStartOf="@+id/add_word_word_known_level_edit_text"
+                app:layout_constraintBaseline_toBaselineOf="@id/add_word_word_known_level_edit_text"
+                android:textSize="18sp" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5" android:layout_marginStart="16dp"/>
+        <Button
+                android:id="@+id/add_word_done_button"
+                android:text="@string/done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_word_word_known_level_edit_text"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

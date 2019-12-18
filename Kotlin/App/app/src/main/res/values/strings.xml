@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">VocabularyTeacher</string>
+    <string name="vocabulary_teacher">Vocabulary Teacher</string>
+    <string name="add_new_word">Add A New Word</string>
+    <string name="native_word">Native Word:</string>
+    <string name="translated_word">Translated Word:</string>
+    <string name="word_known_level">Known Level:</string>
+    <string name="done">Done!</string>
+    <string name="dictionary">Dictionary:</string>
+    <string name="print_dictionary">print dictionary</string>
+    <string name="clear_dictionary">clear dictionary</string>
 </resources>

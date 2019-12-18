@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".PrintDictionaryFragment" android:orientation="vertical" android:layout_marginLeft="16sp"
+              android:layout_marginRight="16sp">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dictionary" android:id="@+id/print_dictionary_title_text_view"
+            android:textStyle="bold|italic"
+            android:textSize="48sp" android:textAlignment="center"/>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/print_dictionary_words_text_view"
+                android:textSize="24sp"/>
+    </ScrollView>
+
+</LinearLayout>
