@@ -3,6 +3,8 @@ package com.example.vocabularyteacher
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,8 +16,16 @@ class MainActivity : AppCompatActivity() {
         this.openFileInput("dictionary").use {
             Dictionary.loadSerialized(it)
         }
+
+        // Set the back button.
+        val navController = this.findNavController(R.id.main_fragment)
+        NavigationUI.setupActionBarWithNavController(this, navController)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.main_fragment)
+        return navController.navigateUp()
+    }
 
     override fun onStop() {
         super.onStop()
