@@ -9,4 +9,14 @@
     <string name="dictionary">Dictionary:</string>
     <string name="print_dictionary">print dictionary</string>
     <string name="clear_dictionary">clear dictionary</string>
+
+    <string name="question_number">Question (%d / %d):</string>
+    <string name="check">check</string>
+    <string name="next">next</string>
+    <string name="run_test">run test</string>
+    <string name="answer">answer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="test_ended">Test Ended!</string>
 </resources>

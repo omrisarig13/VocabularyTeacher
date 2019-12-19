@@ -15,6 +15,10 @@
                 android:layout_height="wrap_content" android:id="@+id/main_title_text_view" android:textSize="46sp"
                 android:textAlignment="center"/>
         <Button
+                android:text="@string/run_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/main_run_test_button"/>
+        <Button
                 android:text="@string/add_new_word"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/main_add_word_button"

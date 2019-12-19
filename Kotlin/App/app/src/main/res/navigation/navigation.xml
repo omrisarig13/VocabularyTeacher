@@ -9,6 +9,7 @@
         <action android:id="@+id/action_mainFragment_to_addWord" app:destination="@id/addWord"/>
         <action android:id="@+id/action_mainFragment_to_printDictionaryFragment"
                 app:destination="@id/printDictionaryFragment"/>
+        <action android:id="@+id/action_mainFragment_to_testFragment" app:destination="@id/testFragment"/>
     </fragment>
     <fragment android:id="@+id/addWord" android:name="com.example.vocabularyteacher.AddWord"
               android:label="fragment_add_word" tools:layout="@layout/fragment_add_word">
@@ -18,4 +19,11 @@
     <fragment android:id="@+id/printDictionaryFragment"
               android:name="com.example.vocabularyteacher.PrintDictionaryFragment"
               android:label="fragment_print_dictionary" tools:layout="@layout/fragment_print_dictionary"/>
+    <fragment android:id="@+id/testFragment" android:name="com.example.vocabularyteacher.TestFragment"
+              android:label="fragment_test" tools:layout="@layout/fragment_test">
+        <action android:id="@+id/action_testFragment_to_testResultFragment" app:destination="@id/testResultFragment"
+                app:popUpTo="@+id/mainFragment"/>
+    </fragment>
+    <fragment android:id="@+id/testResultFragment" android:name="com.example.vocabularyteacher.TestResultFragment"
+              android:label="fragment_test_result" tools:layout="@layout/fragment_test_result"/>
 </navigation>

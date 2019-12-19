@@ -38,4 +38,11 @@ object Dictionary {
         }
     }
 
+    fun getRandomOrderedWordsFromLevel(wantedKnowledgeLevel: KnowledgeLevels): MutableList<WordCouple> {
+        val internalWordList = this.wordList.filter { it.knownLevel == wantedKnowledgeLevel }
+        val mutableWordList = internalWordList.toMutableList()
+        mutableWordList.shuffle()
+        return mutableWordList
+    }
+
 }

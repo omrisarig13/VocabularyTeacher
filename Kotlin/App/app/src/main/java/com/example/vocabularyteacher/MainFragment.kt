@@ -22,6 +22,8 @@ class MainFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
+        view.findViewById<Button>(R.id.main_run_test_button).setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_mainFragment_to_testFragment))
         view.findViewById<Button>(R.id.main_add_word_button).setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_mainFragment_to_addWord))
         view.findViewById<Button>(R.id.main_print_dictionary_button).setOnClickListener(

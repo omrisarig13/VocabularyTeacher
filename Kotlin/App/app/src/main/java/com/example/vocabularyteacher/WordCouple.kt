@@ -5,8 +5,11 @@ import java.io.FileInputStream
 data class WordCouple(
     var nativeWord: String,
     var translatedWord: String,
-    var knownLevel: KnowledgeLevels = KnowledgeLevels.UNKNOWN
+    var knownLevel: KnowledgeLevels = KnowledgeLevels.UNKNOWN,
+    val questionInLevel: Int = 3
 ) {
+    private var correctAnswersInLevel = 0
+
     override fun toString(): String {
         return "${this.nativeWord} : ${this.translatedWord} [${this.knownLevel}]"
     }
@@ -30,6 +33,26 @@ data class WordCouple(
             return other.nativeWord == this.nativeWord && other.translatedWord == this.translatedWord
         }
         return false
+    }
+
+    fun userAnsweredCorrectly() {
+        if (this.knownLevel < KnowledgeLevels.KNOWN) {
+            this.correctAnswersInLevel++
+            if (this.correctAnswersInLevel >= this.questionInLevel) {
+                this.correctAnswersInLevel = 0
+                this.knownLevel++
+            }
+        }
+    }
+
+    fun userAnsweredWrong() {
+        if (this.knownLevel > KnowledgeLevels.UNKNOWN) {
+            this.correctAnswersInLevel--
+            if (this.correctAnswersInLevel <= -this.questionInLevel) {
+                this.correctAnswersInLevel = 0
+                this.knownLevel--
+            }
+        }
     }
 }
 
