@@ -1,10 +1,9 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 
 interface QuestionType {
     val questionLayout: ViewGroup

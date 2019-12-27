@@ -1,4 +1,4 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
 
 import android.os.Bundle

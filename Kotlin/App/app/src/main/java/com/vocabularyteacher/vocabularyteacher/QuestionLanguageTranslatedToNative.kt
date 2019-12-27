@@ -1,4 +1,4 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
 interface QuestionLanguageTranslatedToNative: QuestionLanguage {
     override fun getAnswerWord(wordCouple: WordCouple): String {

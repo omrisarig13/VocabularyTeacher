@@ -1,12 +1,8 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 
 interface QuestionTypeRegular: QuestionType, QuestionLanguage {
     val wordCouple: WordCouple

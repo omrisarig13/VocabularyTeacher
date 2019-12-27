@@ -1,6 +1,5 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
-import android.content.Context
 import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout

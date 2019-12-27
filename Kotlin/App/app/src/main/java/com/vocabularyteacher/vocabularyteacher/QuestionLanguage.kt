@@ -1,4 +1,4 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
 interface QuestionLanguage {
     // Get the answer from the word

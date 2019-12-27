@@ -1,4 +1,4 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
 enum class KnowledgeLevels(var knowledgeLevel: Int) {
     UNKNOWN(0),

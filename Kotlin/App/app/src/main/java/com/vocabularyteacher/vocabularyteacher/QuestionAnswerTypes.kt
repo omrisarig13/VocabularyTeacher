@@ -1,4 +1,4 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
 enum class QuestionAnswerTypes(val value: Int) {
     RIGHT(0),

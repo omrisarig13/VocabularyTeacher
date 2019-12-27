@@ -1,7 +1,6 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
 import android.content.Context
-import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView

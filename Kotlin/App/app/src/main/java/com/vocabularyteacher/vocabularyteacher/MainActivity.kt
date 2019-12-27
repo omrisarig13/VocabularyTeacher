@@ -1,4 +1,4 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Load the previous existing dictionary from the disk.
-        this.openFileInput("dictionary").use {
+        val previousDictionary = try {this.openFileInput("dictionary") } catch (e: java.io.FileNotFoundException) { null }
+        previousDictionary?.use {
             Dictionary.loadSerialized(it)
         }
 

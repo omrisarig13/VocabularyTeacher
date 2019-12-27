@@ -1,13 +1,12 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 
-class QuestionChoiceTranslatedToNative(
+class QuestionChoiceNativeToTranslated(
     override val wordCouple: WordCouple,
     override val dictionary: Dictionary,
     override val questionText: TextView,
@@ -18,7 +17,7 @@ class QuestionChoiceTranslatedToNative(
     override val fourthAnswer: RadioButton,
     override val answerTextToUser: TextView,
     override val questionLayout: ViewGroup
-) : QuestionLanguageTranslatedToNative, QuestionTypeChoices{
+) : QuestionLanguageNativeToTranslated, QuestionTypeChoices{
 
     constructor(wordCouple: WordCouple, dictionary: Dictionary, view: View) :
             this(

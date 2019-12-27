@@ -1,10 +1,9 @@
-package com.example.vocabularyteacher
+package com.vocabularyteacher.vocabularyteacher
 
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 
 class QuestionRegularTranslatedToNative(
     override val wordCouple: WordCouple,
