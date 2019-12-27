@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation"
+            app:startDestination="@id/mainFragment">
+
+    <fragment android:id="@+id/mainFragment" android:name="com.vocabularyteacher.vocabularyteacher.MainFragment"
+              android:label="fragment_main" tools:layout="@layout/fragment_main">
+        <action android:id="@+id/action_mainFragment_to_addWord" app:destination="@id/addWord"/>
+        <action android:id="@+id/action_mainFragment_to_printDictionaryFragment"
+                app:destination="@id/printDictionaryFragment"/>
+        <action android:id="@+id/action_mainFragment_to_testFragment" app:destination="@id/testFragment"/>
+    </fragment>
+    <fragment android:id="@+id/addWord" android:name="com.vocabularyteacher.vocabularyteacher.AddWord"
+              android:label="fragment_add_word" tools:layout="@layout/fragment_add_word">
+        <action android:id="@+id/action_addWord_to_mainFragment" app:destination="@id/mainFragment"
+                app:popUpTo="@+id/mainFragment"/>
+    </fragment>
+    <fragment android:id="@+id/printDictionaryFragment"
+              android:name="com.vocabularyteacher.vocabularyteacher.PrintDictionaryFragment"
+              android:label="fragment_print_dictionary" tools:layout="@layout/fragment_print_dictionary"/>
+    <fragment android:id="@+id/testFragment" android:name="com.vocabularyteacher.vocabularyteacher.TestFragment"
+              android:label="fragment_test" tools:layout="@layout/fragment_test">
+        <action android:id="@+id/action_testFragment_to_testResultFragment" app:destination="@id/testResultFragment"
+                app:popUpTo="@+id/mainFragment"/>
+    </fragment>
+    <fragment android:id="@+id/testResultFragment" android:name="com.vocabularyteacher.vocabularyteacher.TestResultFragment"
+              android:label="fragment_test_result" tools:layout="@layout/fragment_test_result"/>
+</navigation>

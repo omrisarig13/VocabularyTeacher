@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".MainFragment">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+                android:text="@string/vocabulary_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/main_title_text_view" android:textSize="46sp"
+                android:textAlignment="center"/>
+        <Button
+                android:text="@string/run_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/main_run_test_button"/>
+        <Button
+                android:text="@string/add_new_word"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/main_add_word_button"
+                android:textAlignment="center"/>
+        <Button
+                android:text="@string/print_dictionary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/main_print_dictionary_button"
+                android:textAlignment="center"/>
+        <Button
+                android:text="@string/clear_dictionary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/main_clear_dictionary"
+                android:textAlignment="center"/>
+    </LinearLayout>
+
+</FrameLayout>
