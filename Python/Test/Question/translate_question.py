@@ -7,6 +7,7 @@ File: translate_question.py
 import qprompt
 
 from Test.Question import abstract_question
+from Utils import safe_ask
 
 
 class TranslateQuestion(abstract_question.AbstractQuestion):
@@ -28,7 +29,7 @@ class TranslateQuestion(abstract_question.AbstractQuestion):
         :returns: The string with the answer from the user.
 
         """
-        return qprompt.ask_str("Answer")
+        return safe_ask.safe_ask(qprompt.ask_str, "Answer")
 
 
 class TranslateToNativeQuestion(TranslateQuestion):

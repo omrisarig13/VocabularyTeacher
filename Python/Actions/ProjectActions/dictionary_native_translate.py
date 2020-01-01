@@ -7,6 +7,7 @@ File: dictionary_native_translate.py
 import qprompt
 
 from Actions import menu_actions
+from Utils import safe_ask
 
 
 class TranlateToNativeDictionaryAction(menu_actions.BaseAction):
@@ -29,7 +30,9 @@ class TranlateToNativeDictionaryAction(menu_actions.BaseAction):
             qprompt.pause()
             return
 
-        word_to_translate = qprompt.ask_str("Insert the word to translate")
+        word_to_translate = safe_ask.safe_ask(
+            qprompt.ask_str,
+            "Insert the word to translate")
         dictionary = menu_context["dictionary"]
 
         print(dictionary.get_all_translations_to_native(word_to_translate))

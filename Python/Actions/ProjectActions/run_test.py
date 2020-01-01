@@ -8,6 +8,7 @@ import qprompt
 
 from Actions import menu_actions
 from Test import test
+from Utils import safe_ask
 
 
 class RunTestAction(menu_actions.BaseAction):

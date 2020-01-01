@@ -9,6 +9,7 @@ import qprompt
 import dictionary
 
 from Actions import menu_actions
+from Utils import safe_ask
 
 
 class AddDictionaryAction(menu_actions.BaseAction):
@@ -29,9 +30,11 @@ class AddDictionaryAction(menu_actions.BaseAction):
             qprompt.pause()
             return
 
-        native_language = qprompt.ask_str(
+        native_language = safe_ask.safe_ask(
+            qprompt.ask_str,
             "Insert the native language of the dictionary")
-        learned_language = qprompt.ask_str(
+        learned_language = safe_ask.safe_ask(
+            qprompt.ask_str,
             "Insert the learned language of the dictionary")
 
         new_dictionary = dictionary.Dictionary(native_language,

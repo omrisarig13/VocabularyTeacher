@@ -9,6 +9,7 @@ import pickle
 import qprompt
 
 from Actions import menu_actions
+from Utils import safe_ask
 
 
 class SaveDictionaryAction(menu_actions.BaseAction):
@@ -30,7 +31,8 @@ class SaveDictionaryAction(menu_actions.BaseAction):
 
         dictionary_name = menu_context.get("dictionary_name", None)
 
-        file_name = qprompt.ask_str(
+        file_name = safe_ask.safe_ask(
+            qprompt.ask_str,
             "Insert the file name to save the dictionary into",
             dictionary_name)
 

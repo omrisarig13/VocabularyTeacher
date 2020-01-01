@@ -9,6 +9,7 @@ import qprompt
 import word_couple
 
 from Actions import menu_actions
+from Utils import safe_ask
 
 
 class AddNewWordAction(menu_actions.BaseAction):
@@ -32,8 +33,8 @@ class AddNewWordAction(menu_actions.BaseAction):
         """
         print("Insert the words as asked for. To cancel, put -1 as any field.")
 
-        native_word = qprompt.ask_str("Insert the native word")
-        learned_word = qprompt.ask_str("Insert the learned word")
+        native_word = safe_ask.safe_ask(qprompt.ask_str, "Insert the native word")
+        learned_word = safe_ask.safe_ask(qprompt.ask_str, "Insert the learned word")
         known_level = qprompt.ask_int(
             "Insert the known level",
             0,
