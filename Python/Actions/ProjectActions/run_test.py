@@ -29,7 +29,8 @@ class RunTestAction(menu_actions.BaseAction):
             qprompt.pause()
             return
 
-        number_of_questions = qprompt.ask_int(
+        number_of_questions = safe_ask.safe_ask(
+            qprompt.ask_int,
             "Insert the number of questions per known level",
             test.Test.DEFAULT_NUMBER_OF_QUESTIONS,
             vld=lambda x: x > 0)

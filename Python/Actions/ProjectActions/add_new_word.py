@@ -35,7 +35,8 @@ class AddNewWordAction(menu_actions.BaseAction):
 
         native_word = safe_ask.safe_ask(qprompt.ask_str, "Insert the native word")
         learned_word = safe_ask.safe_ask(qprompt.ask_str, "Insert the learned word")
-        known_level = qprompt.ask_int(
+        known_level = safe_ask.safe_ask(
+            qprompt.ask_int,
             "Insert the known level",
             0,
             vld=list(range(-1, word_couple.WordCouple.MAX_LEVEL + 1)))
