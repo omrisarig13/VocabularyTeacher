@@ -10,6 +10,7 @@ import abc
 import qprompt
 
 from Test.Question import abstract_question
+from Utils import safe_ask
 
 
 class MultipleChoiceQuestion(abstract_question.AbstractQuestion):
@@ -103,7 +104,7 @@ class MultipleChoiceQuestion(abstract_question.AbstractQuestion):
         :returns: The number of the answer.
 
         """
-        return qprompt.ask_int("Answer", vld=range(1, 5))
+        return safe_ask.safe_ask(qprompt.ask_int, "Answer", vld=range(1, 5))
 
 
 class MultipleChoiceToNativeQuestion(MultipleChoiceQuestion):

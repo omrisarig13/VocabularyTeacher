@@ -8,6 +8,7 @@ import qprompt
 
 from Actions import menu_actions
 from Actions.ProjectActions import load_dictionary
+from Utils import safe_ask
 
 
 class ExtendDictionaryAction(menu_actions.BaseAction):
@@ -27,7 +28,9 @@ class ExtendDictionaryAction(menu_actions.BaseAction):
             qprompt.pause()
             return
 
-        file_name = qprompt.ask_str("Insert the new name of the dictionary")
+        file_name = safe_ask.safe_ask(
+            qprompt.ask_str,
+            "Insert the new name of the dictionary")
         dictionary = menu_context["dictionary"]
 
         load_action = load_dictionary.LoadDictionaryAction.load_dictionary_file
