@@ -132,7 +132,7 @@ class AbstractQuestion(abc.ABC):
         if answer == self._current_word.translated_word:
             return self.RIGHT_ANSWER
 
-        all_translations = self._dictionary.get_all_translations_to_translated_languege(
+        all_translations = self._dictionary.get_all_translations_to_learned(
             self._current_word.native_word)
 
         if answer in all_translations:
