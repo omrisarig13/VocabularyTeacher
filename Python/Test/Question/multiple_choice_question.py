@@ -126,7 +126,7 @@ class MultipleChoiceToNativeQuestion(MultipleChoiceQuestion):
         :returns: Get the word the question is about.
 
         """
-        return self._current_word.translated_word
+        return self._current_word.get_translated_word()
 
     def _get_answer_from_word(self, current_word):
         """Get the answer from the current word.
@@ -166,4 +166,4 @@ class MultipleChoiceToLearnedQuestion(MultipleChoiceQuestion):
         :returns: A string containing the answer from the word.
 
         """
-        return current_word.translated_word
+        return current_word.get_translated_word()

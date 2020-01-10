@@ -34,7 +34,7 @@ class WordCouple():
             native_word = native_word.lower()
             translated_word = translated_word.lower()
         self._native_word = native_word
-        self.translated_word = translated_word
+        self._translated_word = translated_word
         self.word_known_level = word_known_level
         self._current_stage_in_learned_level = 0
 
@@ -44,7 +44,7 @@ class WordCouple():
         :returns: The string representation of the object.
 
         """
-        return "{} : {} [{}]".format(self._native_word, self.translated_word,
+        return "{} : {} [{}]".format(self._native_word, self._translated_word,
                                      self.word_known_level)
 
     def answered_right(self):
@@ -92,3 +92,10 @@ class WordCouple():
 
         """
         return self._native_word
+
+    def get_translated_word(self):
+        """Get the translated word from the word couple.
+        :returns: The translate word from the word couple.
+
+        """
+        return self._translated_word
