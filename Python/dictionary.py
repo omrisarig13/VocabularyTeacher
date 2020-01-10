@@ -30,10 +30,12 @@ class Dictionary():
         :returns: None
 
         """
-        new_native_word = new_word_couple.get_native_word()
+        new_native_word = new_word_couple.get_most_common_native_word()
+        new_native_words = new_word_couple.get_all_native_words()
+
         # Validate that the word doesn't appear in the dictionary.
         all_translations = self.get_all_translations_to_learned(
-            new_native_word)
+            new_native_words)
         if new_word_couple.get_translated_word() in all_translations:
             raise KeyError("Word is already in dictionary.")
 
@@ -41,7 +43,7 @@ class Dictionary():
         i = 0
         while (
                 i < len(self.words) and
-                new_native_word > self.words[i].get_native_word()):
+                new_native_word > self.words[i].get_most_common_native_word()):
             i += 1
 
         # Add the word.
@@ -65,18 +67,22 @@ class Dictionary():
 
         return string_dict
 
-    def get_all_translations_to_learned(self, native_word):
-        """Get all the translations of a given word.
+    def get_all_translations_to_learned(self, native_words):
+        """Get all the translations of given words.
 
-        :native_word: The word in the native language
-        :returns: A list with all the translations of the given word.
+        :native_words: A list with all the native words to get the translation
+         of.
+        :returns: A list with all the translations of the given words.
 
         """
         all_translations = []
 
         for current_word in self.words:
-            if current_word.get_native_word() == native_word:
-                all_translations.append(current_word.get_translated_word())
+            current_native_words = current_word.get_all_native_words()
+            for current_native_word in current_native_words:
+                if current_native_word in native_words:
+                    all_translations.append(current_word.get_translated_word())
+                    break
 
         return all_translations
 
@@ -91,7 +97,7 @@ class Dictionary():
 
         for current_word in self.words:
             if current_word.get_translated_word() == translated_word:
-                all_translations.append(current_word.get_native_word())
+                all_translations.extend(current_word.get_all_native_words())
 
         return all_translations
 
@@ -132,7 +138,7 @@ class Dictionary():
         """
         for current_word in self.words:
             if (
-                    current_word.get_native_word() == native_word and
+                    native_word in current_word.get_all_native_words() and
                     current_word.get_translated_word() == translated_word):
                 return current_word
 

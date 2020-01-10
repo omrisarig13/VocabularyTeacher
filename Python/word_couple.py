@@ -33,7 +33,7 @@ class WordCouple():
         if lower_case:
             native_word = native_word.lower()
             translated_word = translated_word.lower()
-        self._native_word = native_word
+        self._native_words = [native_word]
         self._translated_word = translated_word
         self.word_known_level = word_known_level
         self._current_stage_in_learned_level = 0
@@ -44,7 +44,7 @@ class WordCouple():
         :returns: The string representation of the object.
 
         """
-        return "{} : {} [{}]".format(self._native_word, self._translated_word,
+        return "{} : {} [{}]".format(self._native_words, self._translated_word,
                                      self.word_known_level)
 
     def answered_right(self):
@@ -86,12 +86,20 @@ class WordCouple():
         self._current_stage_in_learned_level = 0
         self.word_known_level = 0
 
-    def get_native_word(self):
-        """Get the native word from the word couple.
-        :returns: The native word from the word couple.
+    def get_most_common_native_word(self):
+        """Get the most common native word from the word couple.
+        :returns: The most common native word from the word couple.
 
         """
-        return self._native_word
+        return self._native_words[0]
+
+    def get_all_native_words(self):
+        """Get all the native words for the given WordCouple.
+        :returns: A list with all the native words in the word couple. This is
+         a list of all the words in the class.
+
+        """
+        return self._native_words
 
     def get_translated_word(self):
         """Get the translated word from the word couple.
