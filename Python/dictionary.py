@@ -30,20 +30,26 @@ class Dictionary():
         :returns: None
 
         """
-        new_native_word = new_word_couple.get_most_common_native_word()
-        new_native_words = new_word_couple.get_all_native_words()
+        new_native_word = new_word_couple.native_word
+        new_translated_word = new_word_couple.translated_word
+        main_new_native_word = new_native_word.get_most_common_spelling()
+        all_new_native_words = new_native_word.get_all_word_spellings()
 
         # Validate that the word doesn't appear in the dictionary.
         all_translations = self.get_all_translations_to_learned(
-            new_native_words)
-        if new_word_couple.get_translated_word() in all_translations:
-            raise KeyError("Word is already in dictionary.")
+            all_new_native_words)
+
+        all_word_translations = new_translated_word.get_all_word_spellings()
+        for current_word_translation in all_word_translations:
+            if current_word_translation in all_translations:
+                raise KeyError("Word is already in dictionary.")
 
         # Get the new index to add the word
         i = 0
         while (
                 i < len(self.words) and
-                new_native_word > self.words[i].get_most_common_native_word()):
+                main_new_native_word > (
+                    self.words[i].native_word.get_most_common_spelling())):
             i += 1
 
         # Add the word.
@@ -78,26 +84,33 @@ class Dictionary():
         all_translations = []
 
         for current_word in self.words:
-            current_native_words = current_word.get_all_native_words()
+            current_native_words = (
+                current_word.native_word.get_all_word_spellings())
             for current_native_word in current_native_words:
                 if current_native_word in native_words:
-                    all_translations.append(current_word.get_translated_word())
+                    all_translations.extend(
+                        current_word.translated_word.get_all_word_spellings())
                     break
 
         return all_translations
 
-    def get_all_translations_to_native(self, translated_word):
+    def get_all_translations_to_native(self, translated_words):
         """Get all the translations of a given word to the native language.
 
-        :translated_word: The word in the native language
+        :translated_words: A list with all the translation of the given word.
         :returns: A list with all the translations of the given word.
 
         """
         all_translations = []
 
         for current_word in self.words:
-            if current_word.get_translated_word() == translated_word:
-                all_translations.extend(current_word.get_all_native_words())
+            current_translations = (
+                current_word.translated_word.get_all_word_spellings())
+            for current_translated_word in current_translations:
+                if current_translated_word in translated_words:
+                    all_translations.extend(
+                        current_word.native_word.get_all_word_spellings())
+                    break
 
         return all_translations
 
@@ -137,9 +150,13 @@ class Dictionary():
 
         """
         for current_word in self.words:
+            all_native_word_spelling = (
+                current_word.native_word.get_all_word_spellings())
+            all_translation_word_spelling = (
+                current_word.translated_word.get_all_word_spellings())
             if (
-                    native_word in current_word.get_all_native_words() and
-                    current_word.get_translated_word() == translated_word):
+                    native_word in all_native_word_spelling and
+                    translated_word in current_word.get_translated_word()):
                 return current_word
 
         raise KeyError("Word not in dictionary.")

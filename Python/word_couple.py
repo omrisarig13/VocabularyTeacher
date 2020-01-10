@@ -1,11 +1,12 @@
 """
-Word object in multiple objects.
+A couple of Words object in multiple languages.
 
 File: word_couple.py
 Description: A translation of words between native language and new learned
              language.
 """
 
+import word
 
 class WordCouple():
     """A couple of words, one in each language.
@@ -33,8 +34,8 @@ class WordCouple():
         if lower_case:
             native_word = native_word.lower()
             translated_word = translated_word.lower()
-        self._native_words = [native_word]
-        self._translated_word = translated_word
+        self.native_word = word.Word(native_word)
+        self.translated_word = word.Word(translated_word)
         self.word_known_level = word_known_level
         self._current_stage_in_learned_level = 0
 
@@ -44,7 +45,8 @@ class WordCouple():
         :returns: The string representation of the object.
 
         """
-        return "{} : {} [{}]".format(self._native_words, self._translated_word,
+        return "{} : {} [{}]".format(str(self.native_word),
+                                     str(self.translated_word),
                                      self.word_known_level)
 
     def answered_right(self):
@@ -85,25 +87,3 @@ class WordCouple():
         """
         self._current_stage_in_learned_level = 0
         self.word_known_level = 0
-
-    def get_most_common_native_word(self):
-        """Get the most common native word from the word couple.
-        :returns: The most common native word from the word couple.
-
-        """
-        return self._native_words[0]
-
-    def get_all_native_words(self):
-        """Get all the native words for the given WordCouple.
-        :returns: A list with all the native words in the word couple. This is
-         a list of all the words in the class.
-
-        """
-        return self._native_words
-
-    def get_translated_word(self):
-        """Get the translated word from the word couple.
-        :returns: The translate word from the word couple.
-
-        """
-        return self._translated_word
