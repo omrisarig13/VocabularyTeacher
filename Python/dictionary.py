@@ -30,9 +30,10 @@ class Dictionary():
         :returns: None
 
         """
+        new_native_word = new_word_couple.get_native_word()
         # Validate that the word doesn't appear in the dictionary.
         all_translations = self.get_all_translations_to_learned(
-            new_word_couple.native_word)
+            new_native_word)
         if new_word_couple.translated_word in all_translations:
             raise KeyError("Word is already in dictionary.")
 
@@ -40,7 +41,7 @@ class Dictionary():
         i = 0
         while (
                 i < len(self.words) and
-                new_word_couple.native_word > self.words[i].native_word):
+                new_native_word > self.words[i].get_native_word()):
             i += 1
 
         # Add the word.
@@ -74,7 +75,7 @@ class Dictionary():
         all_translations = []
 
         for current_word in self.words:
-            if current_word.native_word == native_word:
+            if current_word.get_native_word() == native_word:
                 all_translations.append(current_word.translated_word)
 
         return all_translations
@@ -90,7 +91,7 @@ class Dictionary():
 
         for current_word in self.words:
             if current_word.translated_word == translated_word:
-                all_translations.append(current_word.native_word)
+                all_translations.append(current_word.get_native_word())
 
         return all_translations
 
@@ -131,7 +132,7 @@ class Dictionary():
         """
         for current_word in self.words:
             if (
-                    current_word.native_word == native_word and
+                    current_word.get_native_word() == native_word and
                     current_word.translated_word == translated_word):
                 return current_word
 
