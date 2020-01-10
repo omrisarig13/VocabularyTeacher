@@ -31,7 +31,7 @@ class Dictionary():
 
         """
         # Validate that the word doesn't appear in the dictionary.
-        all_translations = self.get_all_translations_to_translated_languege(
+        all_translations = self.get_all_translations_to_learned(
             new_word_couple.native_word)
         if new_word_couple.translated_word in all_translations:
             raise KeyError("Word is already in dictionary.")
@@ -64,7 +64,7 @@ class Dictionary():
 
         return string_dict
 
-    def get_all_translations_to_translated_languege(self, native_word):
+    def get_all_translations_to_learned(self, native_word):
         """Get all the translations of a given word.
 
         :native_word: The word in the native language

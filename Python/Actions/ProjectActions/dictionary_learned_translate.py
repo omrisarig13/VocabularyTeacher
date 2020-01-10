@@ -37,6 +37,6 @@ class TranlateToLearnedDictionaryAction(menu_actions.BaseAction):
             "Insert the word to translate")
         dictionary = menu_context["dictionary"]
 
-        print(dictionary.get_all_translations_to_translated_languege(
+        print(dictionary.get_all_translations_to_learned(
             word_to_translate))
         qprompt.pause()
