@@ -65,3 +65,26 @@ class Word():
         """
         return any([self.is_same_word(current_spelling) for current_spelling in
                     word_to_check.get_all_word_spellings()])
+
+    def add_secondary_spelling(self, new_spelling):
+        """Add a new secondary spelling to the word.
+
+        :new_spelling: The new spelling of the word.
+        :returns: None
+
+        """
+        if new_spelling not in self._spellings:
+            self._spellings.append(new_spelling)
+
+    def add_primary_spelling(self, new_spelling):
+        """Add a new primary spelling to the word.
+
+        :new_spelling: The new spelling of the word.
+        :returns: None
+
+        :note: The function will not change the word in case it is already
+         a given spelling of the word.
+
+        """
+        if new_spelling not in self._spellings:
+            self._spellings.insert(0, new_spelling)

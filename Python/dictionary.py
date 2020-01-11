@@ -6,6 +6,8 @@ Description: A module that holds a dictionary. This dictionary holds many pair
              of words, and translate between those words.
 """
 
+import qprompt
+
 import word_couple
 
 
@@ -22,30 +24,66 @@ class Dictionary():
         self.native_language = native_language
         self.translated_language = translated_language
 
-    def add_word(self, new_word_couple):
+    #TODO: Refactor this function to get natvie and translated instead of word.
+    def add_word(self, new_word_couple, should_ask_close_words=True):
         """Add a new word couple to the dictionary.
 
         The new word will be added in a sorted manner. In case the word already
         appears in the dictionary, an error will raise.
 
         :new_word_couple: The new word couple to add to the object.
+        :should_ask_close_words: True if the function should try to find close
+         words to the new function and ask the user to merge them, False
+         otherwise.
         :returns: None
 
         """
         # Validate that the word doesn't appear in the dictionary.
         self._validate_word_not_in_dict(new_word_couple)
 
-        # Get the new index to add the word
-        i = self._get_new_word_index(
-            new_word_couple.native_word.get_most_common_spelling())
+        was_word_added = False
+        if should_ask_close_words:
+            was_word_added = self._add_word_by_close_words(new_word_couple)
 
-        # Add the word.
-        self.words.insert(i, new_word_couple)
+        if not was_word_added:
+            # Get the new index to add the word
+            i = self._get_new_word_index(
+                new_word_couple.native_word.get_most_common_spelling())
+
+            # Add the word.
+            self.words.insert(i, new_word_couple)
+
+    def _add_word_by_close_words(self, new_word_couple):
+        """Add the new word by its close words.
+
+        The function checks if there are any close words to the current word,
+        and in case there are it asks the user if the new word should be
+        extended as part of them.
+
+        :new_word_couple: The new word couple to try to add.
+        :returns: True if the word was added to one of its closed words, False
+         otherwise.
+
+        """
+        for current_word in self.words:
+            if current_word.is_word_close(new_word_couple):
+                print("The current word is close to the word {}.".format(
+                    current_word))
+                if qprompt.ask_yesno(
+                        "Do you want to add this as the same word? [Y/n]",
+                        dft=True):
+                    is_primary = qprompt.ask_yesno(
+                        "is this the primary spelling of the word? [y/N]",
+                        dft=False)
+                    current_word.extend_word(new_word_couple, is_primary)
+                    return True
+
+        return False
 
     def _validate_word_not_in_dict(self, new_word_couple):
         """Validate that the current word is not already in the dict.
 
-        :new_word_couple: The new word to check in the dictionray.
+        :new_word_couple: The new word to check in the dictionary.
         :returns: None
         :raises: KeyError In case the word is already in the dictionary.
 

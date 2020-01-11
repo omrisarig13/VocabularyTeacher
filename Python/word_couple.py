@@ -114,3 +114,39 @@ class WordCouple():
             self.native_word.is_word_same_word(word_couple.native_word) and
             self.translated_word.is_word_same_word(
                 word_couple.translated_word))
+
+    def is_word_close(self, word_couple: WordCouple):
+        """Check if the given word is close to the current word.
+
+        Two word couples are close in case at least one of their translations
+        is the same (the native word or the translated word are the same).
+
+        :word_couple: The word couple to check.
+        :returns: True if the words are close, False otherwise.
+
+        """
+        return (
+            self.native_word.is_word_same_word(word_couple.native_word) or
+            self.translated_word.is_word_same_word(
+                word_couple.translated_word))
+
+    # TODO: Refactor this function to get native and translated
+    def extend_word(self, new_word_couple: WordCouple, is_primary=False):
+        """Add the new word couple to the current word couple.
+
+        :new_word_couple: The new word couple to add.
+        :is_primary: True if the new word is the primary spelling of the word,
+         False otherwise.
+        :returns: None
+
+        """
+        if is_primary:
+            self.native_word.add_primary_spelling(
+                new_word_couple.native_word.get_most_common_spelling())
+            self.translated_word.add_primary_spelling(
+                new_word_couple.translated_word.get_most_common_spelling())
+        else:
+            self.native_word.add_secondary_spelling(
+                new_word_couple.native_word.get_most_common_spelling())
+            self.translated_word.add_secondary_spelling(
+                new_word_couple.translated_word.get_most_common_spelling())
