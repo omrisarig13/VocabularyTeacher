@@ -35,6 +35,5 @@ class TranlateToNativeDictionaryAction(menu_actions.BaseAction):
             "Insert the word to translate")
         dictionary = menu_context["dictionary"]
 
-        print(dictionary.get_all_translations_to_native(word_to_translate))
-
+        print(dictionary.get_all_translations_to_native([word_to_translate]))
         qprompt.pause()

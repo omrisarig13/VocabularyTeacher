@@ -5,6 +5,8 @@ File: word.py
 Description: A simple word object for the project.
 """
 
+from __future__ import annotations
+
 
 class Word():
     """A basic word for the project."""
@@ -38,3 +40,28 @@ class Word():
         """
         return str(self._spellings)
 
+    def is_same_word(self, word_to_check: str):
+        """Check if the given word is the same as the current word.
+
+        The new word will be the same as the current word in case it is one
+        of the possible spelling options of the current word.
+
+        :word_to_check: The word to check
+        :returns: True if the word is one of the word's spellings, False
+         otherwise.
+
+        """
+        return word_to_check in self._spellings
+
+    def is_word_same_word(self, word_to_check: Word):
+        """Check if the given Word object is the same as the current word.
+
+         Two words objcets are the same in case they have at least one common
+         spelling between them.
+
+        :word_to_check: The word to check.
+        :returns: True if the words are the same, False otherwise.
+
+        """
+        return any([self.is_same_word(current_spelling) for current_spelling in
+                    word_to_check.get_all_word_spellings()])

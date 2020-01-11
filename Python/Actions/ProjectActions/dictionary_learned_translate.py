@@ -38,5 +38,5 @@ class TranlateToLearnedDictionaryAction(menu_actions.BaseAction):
         dictionary = menu_context["dictionary"]
 
         print(dictionary.get_all_translations_to_learned(
-            word_to_translate))
+            [word_to_translate]))
         qprompt.pause()

@@ -110,7 +110,7 @@ class AbstractQuestion(abc.ABC):
                   WRONG_ANSWER, RIGHT_ANSWER_BUT_NOT_WANTED)
 
         """
-        if answer in self._current_word.native_word.get_all_word_spellings():
+        if self._current_word.native_word.is_same_word(answer):
             return self.RIGHT_ANSWER
 
         all_translations = self._dictionary.get_all_translations_to_native(
@@ -129,8 +129,7 @@ class AbstractQuestion(abc.ABC):
                   WRONG_ANSWER, RIGHT_ANSWER_BUT_NOT_WANTED)
 
         """
-        if answer in (
-                self._current_word.translated_word.get_all_word_spellings()):
+        if self._current_word.translated_word.is_same_word(answer):
             return self.RIGHT_ANSWER
 
         all_translations = self._dictionary.get_all_translations_to_learned(

@@ -6,7 +6,9 @@ Description: A translation of words between native language and new learned
              language.
 """
 
+from __future__ import annotations
 import word
+
 
 class WordCouple():
     """A couple of words, one in each language.
@@ -87,3 +89,28 @@ class WordCouple():
         """
         self._current_stage_in_learned_level = 0
         self.word_known_level = 0
+
+    def is_same_word(self, native_word: str, translated_word: str):
+        """Check if the given word is the same as the current word.
+
+        :native_word: TODO
+        :translated_word: TODO
+        :returns: TODO
+
+        """
+        return (
+            self.native_word.is_same_word(native_word) and
+            self.translated_word.is_same_word(translated_word))
+
+    def is_word_couple_same(self, word_couple: WordCouple):
+        """Check if the given word couple is the same as this one.
+
+        :word_couple: The word couple to check.
+        :returns: True if there is at least one common word in every launguage
+         for both of the word couples, False otherwise.
+
+        """
+        return (
+            self.native_word.is_word_same_word(word_couple.native_word) and
+            self.translated_word.is_word_same_word(
+                word_couple.translated_word))
