@@ -33,24 +33,44 @@ class Dictionary():
 
         """
         # Validate that the word doesn't appear in the dictionary.
+        self._validate_word_not_in_dict(new_word_couple)
+
+        # Get the new index to add the word
+        i = self._get_new_word_index(
+            new_word_couple.native_word.get_most_common_spelling())
+
+        # Add the word.
+        self.words.insert(i, new_word_couple)
+
+    def _validate_word_not_in_dict(self, new_word_couple):
+        """Validate that the current word is not already in the dict.
+
+        :new_word_couple: The new word to check in the dictionray.
+        :returns: None
+        :raises: KeyError In case the word is already in the dictionary.
+
+        """
         word_from_dictionary = self.get_word_from_word(new_word_couple)
         if word_from_dictionary is not None:
             raise KeyError("Word is already in dictionary ({}).".format(
                 word_from_dictionary))
 
-        # Get the new index to add the word
-        new_native_word = new_word_couple.native_word
-        main_new_native_word = new_native_word.get_most_common_spelling()
+    def _get_new_word_index(self, native_word):
+        """Get the index in which to insert the new word couple.
+
+        :new_word_couple: The new native word to add.
+        :returns: The index in the dictionary to add the native word to.
+
+        """
         i = 0
 
         while (
                 i < len(self.words) and
-                main_new_native_word > (
+                native_word > (
                     self.words[i].native_word.get_most_common_spelling())):
             i += 1
 
-        # Add the word.
-        self.words.insert(i, new_word_couple)
+        return i
 
     def __str__(self):
         """Create an string presentation of the dictionary.
