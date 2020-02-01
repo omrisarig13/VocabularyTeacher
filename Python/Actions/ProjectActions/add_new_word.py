@@ -33,8 +33,10 @@ class AddNewWordAction(menu_actions.BaseAction):
         """
         print("Insert the words as asked for. To cancel, put -1 as any field.")
 
-        native_word = safe_ask.safe_ask(qprompt.ask_str, "Insert the native word")
-        learned_word = safe_ask.safe_ask(qprompt.ask_str, "Insert the learned word")
+        native_word = safe_ask.safe_ask(
+            qprompt.ask_str, "Insert the native word")
+        learned_word = safe_ask.safe_ask(
+            qprompt.ask_str, "Insert the learned word")
         known_level = safe_ask.safe_ask(
             qprompt.ask_int,
             "Insert the known level",

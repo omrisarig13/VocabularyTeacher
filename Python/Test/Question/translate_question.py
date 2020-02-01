@@ -84,6 +84,7 @@ class TranslateToLearnedQuestion(TranslateQuestion):
         """
         return self._current_word.native_word.get_most_common_spelling()
 
+
     def _get_answer_from_word(self, current_word):
         """Get the answer from the current word.
 

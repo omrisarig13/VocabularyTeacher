@@ -136,7 +136,7 @@ class Dictionary():
         :returns: A list with all the translations of the given words.
 
         """
-        all_translations = []
+        all_translations: list = []
 
         for current_word in self.words:
             for current_native_word in native_words:
@@ -154,7 +154,7 @@ class Dictionary():
         :returns: A list with all the translations of the given word.
 
         """
-        all_translations = []
+        all_translations: list = []
 
         for current_word in self.words:
             for current_translated_word in translated_words:
@@ -202,7 +202,7 @@ class Dictionary():
 
         """
         for current_word in self.words:
-            if self.current_word.is_same_word(native_word, translated_word):
+            if current_word.is_same_word(native_word, translated_word):
                 return current_word
 
         raise KeyError("Word not in dictionary.")

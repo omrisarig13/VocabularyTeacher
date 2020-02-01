@@ -56,7 +56,7 @@ class Word():
     def is_word_same_word(self, word_to_check: Word):
         """Check if the given Word object is the same as the current word.
 
-         Two words objcets are the same in case they have at least one common
+         Two words objects are the same in case they have at least one common
          spelling between them.
 
         :word_to_check: The word to check.

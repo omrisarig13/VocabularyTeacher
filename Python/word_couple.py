@@ -106,7 +106,7 @@ class WordCouple():
         """Check if the given word couple is the same as this one.
 
         :word_couple: The word couple to check.
-        :returns: True if there is at least one common word in every launguage
+        :returns: True if there is at least one common word in every language
          for both of the word couples, False otherwise.
 
         """

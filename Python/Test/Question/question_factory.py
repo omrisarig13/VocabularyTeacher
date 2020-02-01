@@ -10,6 +10,7 @@ File: question_factory.py
 from Test.Question import translate_question
 from Test.Question import multiple_choice_question
 
+
 class QuestionFactory():
     """A class used to create different questions."""
 

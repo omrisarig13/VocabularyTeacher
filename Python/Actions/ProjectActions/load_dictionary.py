@@ -46,7 +46,8 @@ class LoadDictionaryAction(menu_actions.BaseAction):
             qprompt.pause()
             return
 
-        file_name = safe_ask.safe_ask(qprompt.ask_str, "Insert the file name of the dictionary")
+        file_name = safe_ask.safe_ask(
+            qprompt.ask_str, "Insert the file name of the dictionary")
 
         menu_context["dictionary"] = self.load_dictionary_file(file_name)
         menu_context["dictionary_name"] = file_name

@@ -11,7 +11,7 @@ from Utils import safe_ask
 
 
 class TranlateToLearnedDictionaryAction(menu_actions.BaseAction):
-    """An action that prints the translations of a word to new languege."""
+    """An action that prints the translations of a word to new language."""
 
     COMMAND_NAME = "Translate To learned Language"
     HELP_TEXT = """
