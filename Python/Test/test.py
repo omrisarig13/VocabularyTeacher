@@ -9,6 +9,7 @@ import random
 import word_couple
 from Test.Question import question_factory
 
+
 class Test():
     """A test that will check the knowledge level of the words."""
 
@@ -57,20 +58,21 @@ class Test():
 
     def _get_test_words(self):
         """Get all the words for the test.
-        :returns: A list with all the words of the test.
 
+        :returns: A list with all the words of the test.
         """
         used_words = []
         for current_level in range(word_couple.WordCouple.MAX_LEVEL + 1):
-            used_words.extend(self._get_words_from_level(self._number_of_questions,
-                                                        current_level,
-                                                        used_words))
+            used_words.extend(self._get_words_from_level(
+                self._number_of_questions,
+                current_level,
+                used_words))
         return used_words
 
     def _get_test_questions(self):
         """Get all the questions for the test.
-        :returns: A list with all the questions in the test.
 
+        :returns: A list with all the questions in the test.
         """
         words = self._get_test_words()
         current_question_factory = question_factory.QuestionFactory(

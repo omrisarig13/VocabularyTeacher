@@ -6,6 +6,10 @@ Description: A module that holds a dictionary. This dictionary holds many pair
              of words, and translate between those words.
 """
 
+import qprompt
+
+import word_couple
+
 
 class Dictionary():
     """A dictionary that holds many word couples."""
@@ -20,31 +24,91 @@ class Dictionary():
         self.native_language = native_language
         self.translated_language = translated_language
 
-    def add_word(self, new_word_couple):
+    #TODO: Refactor this function to get natvie and translated instead of word.
+    def add_word(self, new_word_couple, should_ask_close_words=True):
         """Add a new word couple to the dictionary.
 
         The new word will be added in a sorted manner. In case the word already
         appears in the dictionary, an error will raise.
 
         :new_word_couple: The new word couple to add to the object.
+        :should_ask_close_words: True if the function should try to find close
+         words to the new function and ask the user to merge them, False
+         otherwise.
         :returns: None
 
         """
         # Validate that the word doesn't appear in the dictionary.
-        all_translations = self.get_all_translations_to_learned(
-            new_word_couple.native_word)
-        if new_word_couple.translated_word in all_translations:
-            raise KeyError("Word is already in dictionary.")
+        self._validate_word_not_in_dict(new_word_couple)
 
-        # Get the new index to add the word
+        was_word_added = False
+        if should_ask_close_words:
+            was_word_added = self._add_word_by_close_words(new_word_couple)
+
+        if not was_word_added:
+            # Get the new index to add the word
+            i = self._get_new_word_index(
+                new_word_couple.native_word.get_most_common_spelling())
+
+            # Add the word.
+            self.words.insert(i, new_word_couple)
+
+    def _add_word_by_close_words(self, new_word_couple):
+        """Add the new word by its close words.
+
+        The function checks if there are any close words to the current word,
+        and in case there are it asks the user if the new word should be
+        extended as part of them.
+
+        :new_word_couple: The new word couple to try to add.
+        :returns: True if the word was added to one of its closed words, False
+         otherwise.
+
+        """
+        for current_word in self.words:
+            if current_word.is_word_close(new_word_couple):
+                print("The current word is close to the word {}.".format(
+                    current_word))
+                if qprompt.ask_yesno(
+                        "Do you want to add this as the same word? [Y/n]",
+                        dft=True):
+                    is_primary = qprompt.ask_yesno(
+                        "is this the primary spelling of the word? [y/N]",
+                        dft=False)
+                    current_word.extend_word(new_word_couple, is_primary)
+                    return True
+
+        return False
+
+    def _validate_word_not_in_dict(self, new_word_couple):
+        """Validate that the current word is not already in the dict.
+
+        :new_word_couple: The new word to check in the dictionary.
+        :returns: None
+        :raises: KeyError In case the word is already in the dictionary.
+
+        """
+        word_from_dictionary = self.get_word_from_word(new_word_couple)
+        if word_from_dictionary is not None:
+            raise KeyError("Word is already in dictionary ({}).".format(
+                word_from_dictionary))
+
+    def _get_new_word_index(self, native_word):
+        """Get the index in which to insert the new word couple.
+
+        :new_word_couple: The new native word to add.
+        :returns: The index in the dictionary to add the native word to.
+
+        """
         i = 0
+
         while (
                 i < len(self.words) and
-                new_word_couple.native_word > self.words[i].native_word):
+                native_word > (
+                    self.words[i].native_word.get_most_common_spelling())):
             i += 1
 
-        # Add the word.
-        self.words.insert(i, new_word_couple)
+        return i
 
     def __str__(self):
         """Create an string presentation of the dictionary.
@@ -64,33 +128,41 @@ class Dictionary():
 
         return string_dict
 
-    def get_all_translations_to_learned(self, native_word):
-        """Get all the translations of a given word.
+    def get_all_translations_to_learned(self, native_words: list):
+        """Get all the translations of given words.
 
-        :native_word: The word in the native language
-        :returns: A list with all the translations of the given word.
+        :native_words: A list with all the native words to get the translation
+         of.
+        :returns: A list with all the translations of the given words.
 
         """
-        all_translations = []
+        all_translations: list = []
 
         for current_word in self.words:
-            if current_word.native_word == native_word:
-                all_translations.append(current_word.translated_word)
+            for current_native_word in native_words:
+                if current_word.native_word.is_same_word(current_native_word):
+                    all_translations.extend(
+                        current_word.translated_word.get_all_word_spellings())
+                    break
 
         return all_translations
 
-    def get_all_translations_to_native(self, translated_word):
+    def get_all_translations_to_native(self, translated_words: list):
         """Get all the translations of a given word to the native language.
 
-        :translated_word: The word in the native language
+        :translated_words: A list with all the translation of the given word.
         :returns: A list with all the translations of the given word.
 
         """
-        all_translations = []
+        all_translations: list = []
 
         for current_word in self.words:
-            if current_word.translated_word == translated_word:
-                all_translations.append(current_word.native_word)
+            for current_translated_word in translated_words:
+                if current_word.translated_word.is_same_word(
+                        current_translated_word):
+                    all_translations.extend(
+                        current_word.native_word.get_all_word_spellings())
+                    break
 
         return all_translations
 
@@ -121,7 +193,7 @@ class Dictionary():
             except KeyError:
                 pass
 
-    def get_word(self, native_word, translated_word):
+    def get_word(self, native_word: str, translated_word: str):
         """Get the word couple from the dictionary.
 
         :native_word: The word in the native language
@@ -130,12 +202,24 @@ class Dictionary():
 
         """
         for current_word in self.words:
-            if (
-                    current_word.native_word == native_word and
-                    current_word.translated_word == translated_word):
+            if current_word.is_same_word(native_word, translated_word):
                 return current_word
 
         raise KeyError("Word not in dictionary.")
+
+    def get_word_from_word(self, word_to_get: word_couple.WordCouple):
+        """Get the same word couple from the dictionary.
+
+        :word_to_get: The word to get from the dictionary.
+        :returns: The word from the dictionary. None in case the word doesn't
+         exist in the dicitonary.
+
+        """
+        for current_word in self.words:
+            if current_word.is_word_couple_same(word_to_get):
+                return current_word
+
+        return None
 
     def get_words_from_level(self, level):
         """Get all the words from some level in the dictionary.

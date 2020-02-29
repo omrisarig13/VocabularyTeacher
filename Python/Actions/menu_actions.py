@@ -28,6 +28,11 @@ class BaseAction(abc.ABC):
         :returns: None
 
         """
+        if not hasattr(self, "COMMAND_NAME"):
+            raise NotImplementedError("Action must implement COMMAND_NAME")
+        if not hasattr(self, "HELP_TEXT"):
+            raise NotImplementedError("Action must implement HELP_TEXT")
+
         self._command_name = self.COMMAND_NAME
         self._help_message = self.format_help_message(self.COMMAND_NAME,
                                                       self.HELP_TEXT)

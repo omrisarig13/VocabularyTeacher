@@ -11,7 +11,7 @@ from Utils import safe_ask
 
 
 class TranlateToLearnedDictionaryAction(menu_actions.BaseAction):
-    """An action that prints the translations of a word to new languege."""
+    """An action that prints the translations of a word to new language."""
 
     COMMAND_NAME = "Translate To learned Language"
     HELP_TEXT = """
@@ -38,5 +38,5 @@ class TranlateToLearnedDictionaryAction(menu_actions.BaseAction):
         dictionary = menu_context["dictionary"]
 
         print(dictionary.get_all_translations_to_learned(
-            word_to_translate))
+            [word_to_translate]))
         qprompt.pause()
