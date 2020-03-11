@@ -10,6 +10,7 @@ import menu
 from Actions.MenuActions import help_action
 from Actions.ProjectActions import add_dictionary
 from Actions.ProjectActions import add_new_word
+from Actions.ProjectActions import add_new_words_from_file
 from Actions.ProjectActions import load_dictionary
 from Actions.ProjectActions import print_dictionary
 from Actions.ProjectActions import save_dictionary
@@ -26,6 +27,7 @@ ALL_AVAILABLE_COMMANDS = [
     run_test.RunTestAction,
     add_new_word.AddNewWordAction,
     add_new_word.BulkAddNewWordAction,
+    add_new_words_from_file.AddNewWordsFromFileAction,
     extend_dictionary.ExtendDictionaryAction,
     dictionary_learned_translate.TranlateToLearnedDictionaryAction,
     dictionary_native_translate.TranlateToNativeDictionaryAction,
