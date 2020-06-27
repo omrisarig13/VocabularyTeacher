@@ -18,12 +18,14 @@ from Actions.ProjectActions import extend_dictionary
 from Actions.ProjectActions import dictionary_learned_translate
 from Actions.ProjectActions import dictionary_native_translate
 from Actions.ProjectActions import run_test
+from Actions.ProjectActions import print_summary
 
 ALL_AVAILABLE_COMMANDS = [
     load_dictionary.LoadDictionaryAction,
     add_dictionary.AddDictionaryAction,
     save_dictionary.SaveDictionaryAction,
     print_dictionary.PrintDictionaryAction,
+    print_summary.PrintSummaryAction,
     run_test.RunTestAction,
     add_new_word.AddNewWordAction,
     add_new_word.BulkAddNewWordAction,

@@ -235,3 +235,13 @@ class Dictionary():
                 words_from_level.append(current_word)
 
         return words_from_level
+
+    def print_summary(self):
+        words_above_level_one = 0
+        for current_level in range(5):
+            current_number_of_words = len(self.get_words_from_level(current_level))
+            print(f"{current_number_of_words} words from level {current_level}")
+            if current_level > 0:
+                words_above_level_one += current_number_of_words
+        print(f"There are {words_above_level_one} words above level one")
+        print(f"There are {len(self.words)} words in the dictionary.")
