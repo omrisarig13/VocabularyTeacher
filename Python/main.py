@@ -19,6 +19,7 @@ from Actions.ProjectActions import dictionary_learned_translate
 from Actions.ProjectActions import dictionary_native_translate
 from Actions.ProjectActions import run_test
 from Actions.ProjectActions import print_summary
+from Actions.ProjectActions import delete_word
 
 ALL_AVAILABLE_COMMANDS = [
     load_dictionary.LoadDictionaryAction,
@@ -33,6 +34,7 @@ ALL_AVAILABLE_COMMANDS = [
     extend_dictionary.ExtendDictionaryAction,
     dictionary_learned_translate.TranlateToLearnedDictionaryAction,
     dictionary_native_translate.TranlateToNativeDictionaryAction,
+    delete_word.DeleteWordAction,
     help_action.HelpAction,
 ]
 
