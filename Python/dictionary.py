@@ -245,3 +245,20 @@ class Dictionary():
                 words_above_level_one += current_number_of_words
         print(f"There are {words_above_level_one} words above level one")
         print(f"There are {len(self.words)} words in the dictionary.")
+
+    def delete_word(self, word_index):
+        """Delete a word from the dictionary.
+
+        :word_index: The index of the word to delete from the dictionary.
+
+        """
+        self.words.pop(word_index)
+
+    def get_word_by_index(self, word_index):
+        """Get the word in the given index.
+
+        :word_index: The index of the word to get.
+
+        """
+        return self.words[word_index]
+
